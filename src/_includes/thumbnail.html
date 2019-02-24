@@ -1,0 +1,18 @@
+<div class="image-container">
+
+  {% if include.iframe != nil %}
+    {{ include.iframe }}
+  {% endif %}
+
+  {% if include.image_path != nil %}
+  <div class="image">
+    <img src="https://www.gizra.com/{{ include.image_path }}">
+  </div>
+  {% endif %}
+
+  {% if include.caption != nil %}
+    <div class="caption">
+      {{ include.caption }}
+    </div>
+  {% endif %}
+</div>
