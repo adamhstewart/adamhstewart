@@ -1,0 +1,13 @@
+---
+layout: default
+---
+  <h1 class="title">Home</h1>
+  <ul>
+    {% for link in site.pages %}
+      {% if link.label %}
+        <li>
+          <a href="{{site.url}}{{link.url}}">{{ link.label }}</a>
+        </li>
+      {% endif %}
+    {% endfor %}
+  </ul>
