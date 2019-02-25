@@ -1,6 +1,6 @@
 source "http://rubygems.org"
 
-gem 'jekyll'
+gem "jekyll", ">= 3.8.4"
 gem 'redcarpet'
 gem 'classifier-reborn'
 gem 'fast-stemmer'

@@ -1,3 +1,8 @@
+$base-font-size: 18px !default;
+$base-line-height: 27px !default;
+
+@import "normalize/import-now";
+
 body {
   font-family: 'Rokkitt', serif;
   background-color: #f3f3f3;
