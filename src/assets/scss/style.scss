@@ -77,3 +77,30 @@ img {
   max-width: 100%;
   height: auto;
 }
+
+.form-item {
+  margin-top: 0.5em;
+  margin-top: 0.5em;
+
+  label {
+    font-weight: bold;
+  }
+
+  &.block-label label {
+    display: block;
+  }
+
+  &.inline-label label {
+    display: inline
+  }
+  input.button {
+    background-color: white;
+    border: 2px black solid;
+    cursor: pointer;
+
+    &:hover {
+      background-color: black;
+      color: white;
+    }
+  }
+}
