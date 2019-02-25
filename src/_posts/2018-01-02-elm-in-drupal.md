@@ -5,7 +5,7 @@ tags:
   - "Drupal-planet"
   - "Non-Profit"
 permalink: "/content/elm-in-drupal-panels/"
-layout: default
+layout: post
 image: "/assets/images/posts/elm-in-drupal-panels/thumb.jpg"
 author: IshaDakota
 published: true

@@ -5,7 +5,7 @@ tags:
   - CSS
   - Prototyping
 permalink: "/content/prototype-with-css-grid/"
-layout: default  
+layout: post  
 image: "/assets/images/posts/prototype-css/thumb.jpg"   
 author: IshaDakota  
 description: "My experiment in CSS-Grid, stepping outside my comfort zone, and relying on the the knowledge of others."

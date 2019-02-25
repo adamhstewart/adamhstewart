@@ -5,7 +5,7 @@ tags:
   - UX
   - The Gizra Way
 permalink: "/content/next-in-nonprofit-podcast/"
-layout: default
+layout: post
 image: "/assets/images/posts/nonprofit-podcast/thumb.jpg"
 author: IshaDakota
 description: "A podcast conversation between Adam Stewart and Steve Boland on nonprofit organizations doing technology planning and outreach using open-source tools."

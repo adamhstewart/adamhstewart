@@ -6,7 +6,7 @@ tags:
   - LMS
   - Inbox Simulation
 permalink: "/content/elm-inbox-simulation/"
-layout: default
+layout: post
 image: "/assets/images/posts/elm-inbox-simulator/thumb.jpg"
 author: IshaDakota
 description: "How the exciting world of web frameworks helped us create a complex demonstration of an inbox simulation in days."
