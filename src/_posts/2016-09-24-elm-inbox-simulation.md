@@ -5,7 +5,7 @@ tags:
   - Elm
   - LMS
   - Inbox Simulation
-permalink: "/content/elm-inbox-simulation/"
+permalink: "/writing/elm-inbox-simulation/"
 layout: post
 image: "/assets/images/posts/elm-inbox-simulator/thumb.jpg"
 author: IshaDakota

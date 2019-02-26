@@ -4,7 +4,7 @@ tags:
   - Elm
   - "Drupal-planet"
   - "Non-Profit"
-permalink: "/content/elm-in-drupal-panels/"
+permalink: "/writing/elm-in-drupal-panels/"
 layout: post
 image: "/assets/images/posts/elm-in-drupal-panels/thumb.jpg"
 author: IshaDakota

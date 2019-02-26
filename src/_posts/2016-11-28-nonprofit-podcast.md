@@ -4,7 +4,7 @@ tags:
   - Nonprofit
   - UX
   - The Gizra Way
-permalink: "/content/next-in-nonprofit-podcast/"
+permalink: "/writing/next-in-nonprofit-podcast/"
 layout: post
 image: "/assets/images/posts/nonprofit-podcast/thumb.jpg"
 author: IshaDakota

@@ -4,7 +4,7 @@ tags:
   - Web Projects
   - Nonprofit
   - The Gizra Way
-permalink: "/content/rebuild-or-refresh/"
+permalink: "/writing/rebuild-or-refresh/"
 layout: post  
 image: "/assets/images/posts/rebuild-or-refresh/thumb.jpg"   
 author: IshaDakota  

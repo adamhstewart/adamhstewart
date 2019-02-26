@@ -4,7 +4,7 @@ tags:
   - CSS-Grid
   - CSS
   - Prototyping
-permalink: "/content/prototype-with-css-grid/"
+permalink: "/writing/prototype-with-css-grid/"
 layout: post  
 image: "/assets/images/posts/prototype-css/thumb.jpg"   
 author: IshaDakota  
