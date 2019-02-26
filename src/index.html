@@ -1,13 +1,15 @@
 ---
 layout: default
 ---
-  <h1 class="title">Home</h1>
-  <ul>
-    {% for link in site.pages %}
-      {% if link.label %}
-        <li>
-          <a href="{{site.url}}{{link.url}}">{{ link.label }}</a>
-        </li>
-      {% endif %}
-    {% endfor %}
-  </ul>
+<h1 class="title sr-only">Home Page</h1>
+<div class="home-grid">
+  <div class="welcome">
+    Hi. My name is Adam H. Stewart and I am a technologist with
+    <a href="/experience">experience</a> in education, training,
+    and organizational leadership. I've <a href="/writing">written</a>
+    some things.
+  </div>
+  <div class="hello">
+    Say <a href="/contact">hi</a> back.
+  </div>
+</div>

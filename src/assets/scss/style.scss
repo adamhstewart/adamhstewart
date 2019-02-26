@@ -135,6 +135,7 @@ img {
   &.inline-label label {
     display: inline
   }
+
   input.button {
     background-color: white;
     border: 2px black solid;
@@ -146,6 +147,10 @@ img {
       transition: all .5s ease;
     }
   }
+
+  textarea {
+    max-width: 100%
+  }
 }
  .posts {
    h3 {
@@ -156,3 +161,35 @@ img {
      }
    }
  }
+
+.home-grid {
+  margin-top: 6em;
+  margin-bottom: 6em;
+  display: grid;
+  grid-row-gap: 4em;
+
+  @media all and (min-width: $medium-screen) {
+    grid-template-columns: repeat(3,1fr);
+  }
+
+  .welcome {
+    line-height: 1.2;
+    font-size: 22px;
+
+    @media all and (min-width: $medium-screen) {
+      grid-column: 2 / span 2;
+      font-size: 3.1177vw;
+    }
+
+    @media all and (min-width: $large-screen) {
+      font-size: 42px;
+    }
+  }
+
+  .hello {
+    @media all and (min-width: $medium-screen) {
+      grid-column: 2 / span 2;
+      font-size: 2.5vw;
+    }
+  }
+}
