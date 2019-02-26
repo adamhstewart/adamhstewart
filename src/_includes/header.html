@@ -6,13 +6,13 @@
     <a class="menu-item" href="{{ site.url }}/">
       Home
     </a>
-    <a class="menu-item" href="{{ site.url }}/writing">
+    <a class="menu-item {% if page.url contains 'writing' %}active{% endif %}" href="{{ site.url }}/writing">
       Writing
     </a>
-    <a class="menu-item" href="{{ site.url }}/about">
-      About
+    <a class="menu-item {% if page.url contains 'experience' %}active{% endif %}" href="{{ site.url }}/experience">
+      Experience
     </a>
-    <a class="menu-item" href="{{ site.url }}/contact">
+    <a class="menu-item {% if page.url contains 'contact' %}active{% endif %}" href="{{ site.url }}/contact">
       Contact
     </a>
   </div>
