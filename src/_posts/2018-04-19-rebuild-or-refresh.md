@@ -5,7 +5,7 @@ tags:
   - Nonprofit
   - The Gizra Way
 permalink: "/content/rebuild-or-refresh/"
-layout: default  
+layout: post  
 image: "/assets/images/posts/rebuild-or-refresh/thumb.jpg"   
 author: IshaDakota  
 description: "Sometimes the answer to whether you should rebuild or refresh your website is neither - a lean discovery can help you out."

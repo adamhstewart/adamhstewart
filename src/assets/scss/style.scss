@@ -4,6 +4,7 @@ $base-line-height: 27px !default;
 @import "normalize/import-now";
 
 body {
+  padding-top: 20px;
   font-family: 'Rokkitt', serif;
   background-color: #f3f3f3;
 }
@@ -23,6 +24,15 @@ h3 {
   margin-bottom: 0.5em;
 }
 
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+
 .container {
   max-width: 960px;
   margin-left: auto;
@@ -37,23 +47,31 @@ h3 {
   margin-right: auto;
   padding-left: 4%;
   padding-right: 4%;
-
 }
 
 .site-title {
   font-size: 2.5rem;
+  margin-bottom: 0.5em;
 }
 
 .site-menu {
+  padding-top: 0.25em;
   border-top: 3px solid black;
   font-family: 'Poppins', sans-serif;
   display: flex;
   justify-content: flex-end;
+  flex-wrap: wrap;
 
   a.menu-item {
     margin-right: 2em;
     text-decoration: none;
     color: black;
+    border-bottom: 3px solid #f3f3f3;
+
+    &:hover {
+      border-bottom: 3px solid black;
+      transition: all .5s ease;
+    }
   }
 }
 
@@ -101,6 +119,16 @@ img {
     &:hover {
       background-color: black;
       color: white;
+      transition: all .5s ease;
     }
   }
 }
+ .posts {
+   h3 {
+     margin-bottom: 0;
+
+     a {
+       color: black;
+     }
+   }
+ }
