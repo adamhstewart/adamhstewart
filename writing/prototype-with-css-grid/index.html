@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-129455920-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-129455920-2');
+</script>
+
+    <title>Adam H. Stewart</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:site_name" content="Adam H. Stewart">
+
+    
+      <meta property="og:title" content="Walking the Tightrope without a Net: Prototyping in Browser with CSS Grid">
+    
+
+    
+    <meta name="description" content="My experiment in CSS-Grid, stepping outside my comfort zone, and relying on the the knowledge of others.">
+    <meta property="og:description" content="My experiment in CSS-Grid, stepping outside my comfort zone, and relying on the the knowledge of others.">
+    
+
+    
+    <meta property="og:image" content="https://adamhstewart.github.io/adamhstewart/assets/images/posts/prototype-css/thumb.jpg">
+    
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:700|Rokkitt:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://adamhstewart.github.io/adamhstewart/assets/stylesheets/style.css" />
+
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+  </head>
+
+  <body>
+    <header class="container">
+  <div class="site-title">
+    Adam H. Stewart
+  </div>
+  <div class="site-menu">
+    <a class="menu-item" href="https://adamhstewart.github.io/adamhstewart/">
+      Home
+    </a>
+    <a class="menu-item" href="https://adamhstewart.github.io/adamhstewart/writing">
+      Writing
+    </a>
+    <a class="menu-item" href="https://adamhstewart.github.io/adamhstewart/about">
+      About
+    </a>
+    <a class="menu-item" href="https://adamhstewart.github.io/adamhstewart/contact">
+      Contact
+    </a>
+  </div>
+</header>
+
+
+    <div class="post-container">
+      <h1>Walking the Tightrope without a Net: Prototyping in Browser with CSS Grid</h1>
+      <p>Not long ago, I was reviewing some ideas with a client about his homepage. It was a pretty typical issue – some dynamic content (in this case, educational resources) that needed to be arranged and highlighted in different ways in order to draw in users. There are a lot of known patterns to use here some of which would work well. I had a few ideas – none of them particularly earth-shattering – that might solve the problem.</p>
+
+<p>So what’s the next step?</p>
+
+<p>I could have gone to a designer, translated the idea, waited for PSDs to come back, shared with the client, and rinsed and repeated. A totally valid and worthwhile process in cases where a designer’s creative treatment is needed. But in this simple (and low-budget) scenario, there were some clear tropes that could be used. Of course, there are prototype apps like <a href="https://www.invisionapp.com/">InVision</a> or <a href="https://www.axure.com/">Axure</a>, but I haven’t really found the case where fumbling through these tools myself was worth the learning curve. Here’s where CSS-Grid settled into the process really nicely.</p>
+
+<p>Because I had been following the <a href="https://www.w3.org/TR/css-grid-1/">CSS-Grid Specification</a> quite closely – mainly through the Twitter feeds of leading advocates and members of the CSS Working Group like <a href="https://twitter.com/jensimmons">Jen Simmons</a> and <a href="https://twitter.com/rachelandrew">Rachel Andrew</a> (more on the importance of that below) – I was eager to try it out in this context.</p>
+
+<!-- more -->
+
+<div class="image-container">
+
+  
+
+  
+  <div class="image">
+    <img src="https://www.gizra.com/assets/images/posts/prototype-css/grid-by-example.jpg" />
+  </div>
+  
+
+  
+    <div class="caption">
+      Grid by Example, https://gridbyexample.com/, a project by Rachel Andrew to demonstrate, well, grid by example.
+    </div>
+  
+</div>
+
+<h2 id="skipping-the-sketch">Skipping the Sketch</h2>
+
+<p>I’ve long been a proponent of prototyping in browser. Mostly because I’m pretty bad with a pencil and paper – but also because it’s become a realistic way to present ideas on an actual screen. CSS Frameworks like <a href="https://getbootstrap.com/">Bootstrap</a> and <a href="https://semantic-ui.com/">Semantic UI</a>, of course, make this a a lot easier by providing  defaults, re-usable elements (like buttons and tabs), and most-importantly a grid upon which to lay out content.</p>
+
+<p>But there are at least two constraints in this method:</p>
+
+<ol>
+  <li>All of your prototypes end up looking like a typical Bootstrap or Semantic UI website. Not that there’s anything wrong with that, but defaults generally get you to a default position.</li>
+  <li>The grid – that we so desperately need – forces itself upon the content. In order to get layout for your content, your markup needs to contain the framework selectors to indicate the layout (you know,  <code class="highlighter-rouge">col-md-3</code> and <code class="highlighter-rouge">ui four column grid</code>).</li>
+</ol>
+
+<p>That’s where CSS-Grid is really great: all layout stays in the CSS and all content is just content.  Much ado has been made about “source-order independence,”” which indeed is cool. You can move things around on the page independent of how it appears in the markup. But the overall separation of content and layout is much more fundamental to what makes it a great tool. It’s content agnostic in that it really doesn’t care what your content looks like. As long as there is some structure to it, you should be able to lay it out how you want.</p>
+
+<p>Another really cool thing about using CSS-Grid in a prototyping task like this is that you can inject it directly into the situation that you need. Working independent of a framework, you’re not burdened by any of the defaults of a particular framework. I can literally create a bit of layout on demand in just the space I need it and disregard everything else.</p>
+
+<h2 id="drawing-the-canvas">Drawing the Canvas</h2>
+
+<p>Back to the client: I promised that I would get back to him the next day, so I didn’t have a ton of time. Encouraged by enthusiastic advocates for CSS-Grid, and strengthened by their shared knowledge, I got to work.</p>
+
+<p><strong>First, I  just grabbed a static version of the homepage</strong> (yep, just by copy/pasting the source code along with the compiled CSS and JavaScript and crudely put it in its own include in a static site). At Gizra we use our own <a href="https://github.com/Gizra/jekyll-base">Jekyll Base</a> to do static sites, so it makes slicing up a template pretty trivial. Basically everything above my highlighted block was the header and everything below it was the footer, and it allowed me to treat the area that I was working on as the page content. It worked out so well it felt like cheating.</p>
+
+<div class="image-container">
+
+  
+
+  
+  <div class="image">
+    <img src="https://www.gizra.com/assets/images/posts/prototype-css/gizra-in-grid.jpg" />
+  </div>
+  
+
+  
+    <div class="caption">
+      CSS-Grid allows you to work on discrete areas of layout -- in this case a homepage featured block is My CSS-Grid workspace..
+    </div>
+  
+</div>
+
+<p><strong>The next step was to create my content area.</strong> I tried to give it a basic structure that contained all of the elements I wanted: A list of items with a title (one of them “featured” with a subtitle as well), an image, a category “tag” and a hover text. That’s it, and it looked something like this:</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"resource-container"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"item item-title"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;h3</span> <span class="na">class=</span><span class="s">"resource-title"</span><span class="nt">&gt;</span>Recent Items<span class="nt">&lt;/h3&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
+
+  <span class="c">&lt;!-- This is the featured item --&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"item item-1"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;img</span> <span class="na">src=</span><span class="s">"https://placeimg.com/690/690/any"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"featured-resource-title-banner"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"featured-resource-title"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;h2&gt;</span>Gizra. We Build Websites.<span class="nt">&lt;/h2&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"subtitle"</span><span class="nt">&gt;</span>
+          Everybody tells us that people won’t read this.
+          They will enter the site, see mostly text, and move on.
+        <span class="nt">&lt;/div&gt;</span>
+        <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">"subtitle-link"</span> <span class="na">href=</span><span class="s">""</span><span class="nt">&gt;</span>View All Stories<span class="nt">&lt;/a&gt;</span>
+      <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
+
+  <span class="c">&lt;!-- This is a regular item --&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"item item-2"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;img</span> <span class="na">src=</span><span class="s">"https://placeimg.com/280/280/any"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"resource-title-banner"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"resource-title"</span><span class="nt">&gt;</span>
+        Your business is in deep mud. Not just metaphorically speaking.
+      <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"resource-type"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"resource-type-title"</span><span class="nt">&gt;</span>Journal Entry<span class="nt">&lt;/span&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"teaser-hover"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"teaser-hover-text"</span><span class="nt">&gt;</span>Read Now<span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
+
+ <span class="c">&lt;!-- more items... --&gt;</span>
+
+<span class="nt">&lt;/div&gt;</span>
+
+</code></pre></div></div>
+
+<p><strong>Next was the new part for me</strong> – to create the layouts that I had in mind, I needed to dive in and play around with CSS-Grid. In short, it was surprisingly easy. I challenged myself to make as many layouts as I could without touching the <a href="https://github.com/Gizra/css-grid-demo/blob/master/static/src/_includes/resource_grid.html">HTML markup at all</a>. In the end,
+I exhausted my allotted time long before I ran out of layout options. <a href="https://gizra.github.io/css-grid-demo/">In each of the layouts in this demo</a> (which uses the Gizra website in place as an example) the only difference in the markup is the CSS selector on the grid container itself.</p>
+
+<div class="image-container">
+
+  
+
+  
+  <div class="image">
+    <img src="https://www.gizra.com/assets/images/posts/prototype-css/gizra.gif" />
+  </div>
+  
+
+  
+    <div class="caption">
+      The gizra.com homepage, reimagined in CSS-Grid with multiple layouts
+    </div>
+  
+</div>
+
+<p>If you want to try this at home, you can use the <a href="https://github.com/Gizra/css-grid-demo">CSS-Grid Demo repository</a> that I created in order to provide the example for this post, but with a note: the purpose of this post is not as an instructional on how to do CSS Grid. <a href="http://jensimmons.com/post/feb-27-2017/learn-css-grid">There</a>. <a href="https://gridbyexample.com/examples/">are</a>.  <a href="https://css-tricks.com/snippets/css/complete-guide-grid/">much</a>.  <a href="https://scotch.io/tutorials/getting-started-with-css-grid-layout">better</a>.  <a href="https://medium.freecodecamp.org/how-to-prototype-websites-quickly-with-css-grid-ffc9cba08583">resources</a> for that. The point is rather to document the process of pushing boundaries to explore new ways of doing things. I’ll take feedback on poor implementation, but I won’t correct it. I’m on to the next tightrope act.</p>
+
+<h2 id="on-inspiration-and-moving-outside-your-comfort-zone">On Inspiration and Moving Outside Your Comfort Zone</h2>
+
+<p>Part of the reason that I was eager to try this grid experiment in the wild is a story about inspiration and mentorship. Some mentorship is an intentional, crafted, and highly personal project. Some are moments of inspiration sustained – by some device – from a distance.</p>
+
+<p>I only “met” Jen Simmons once. And by “met,” I mean I sat quietly in an audience of more than 200 at a DrupalCon in Chicago in 2011. I was an outsider to the web development world and feeling much like an imposter. To hear someone who also came from “the outside,” but spoke with such clear vision about what the web could and should do was inspiring. I’m pretty certain that I wouldn’t have left a comfortable career for something exciting and new if I hadn’t been in that room on that day.</p>
+
+<p>Since then, I made Jen somewhat of a remote mentor, following her on Twitter, listening to most every episode of <a href="http://5by5.tv/webahead">The Web Ahead</a> podcast, and currently engrossed in her YouTube series <a href="https://www.youtube.com/channel/UC7TizprGknbDalbHplROtag">Layout Land</a>. Jen has also been pretty vocal about the challenges that women in tech face – citing as an example her lower ratio of twitter followers in proportion to her contribution to the community and relative to male colleagues. I don’t have a lot to add to that conversation that hasn’t been said, other than if you consider yourself a “web” worker and regard Twitter as a valuable source for the exchange of ideas, you’re not doing your job if you aren’t following her.</p>
+
+<div class="image-container">
+
+  
+
+  
+  <div class="image">
+    <img src="https://www.gizra.com/assets/images/posts/prototype-css/tightrope-without-a-net.jpg" />
+  </div>
+  
+
+  
+    <div class="caption">
+      Tightrope Walk over Hamilton Street -- Allentown, PA.
+    </div>
+  
+</div>
+
+<p>We have this principle at Gizra where we encourage each other to step outside our comfort zones. Try a new idea, fly without a net – you may fall, but you may also produce something really beautiful. Whether it’s starting a new career, or simply testing out a new thing with a real live client, it’s easier if you can follow the lead and rely on some of the experiences of people you trust.</p>
+
+    </div>
+
+    
+
+  </body>
+
+</html>
