@@ -17,44 +17,8 @@ var bs;
 var util = require("gulp-util");
 var source = require("vinyl-source-stream");
 
-// Deletes the directory that is used to serve the site during development
-gulp.task("clean:dev", del.bind(null, ["serve"]));
-
-// Deletes the directory that the optimized site is output to
-gulp.task("clean:prod", del.bind(null, ["site"]));
-
-// Runs the build command for Jekyll to compile the site locally
-// This will build the site with the production settings
-gulp.task("jekyll:dev", $.shell.task("bundle exec jekyll build"));
-gulp.task("jekyll-rebuild", ["jekyll:dev", "js"], function () {
-  reload;
-});
-
-// Almost identical to the above task, but instead we load in the build configuration
-// that overwrites some of the settings in the regular configuration.
-gulp.task("jekyll:prod", $.shell.task("bundle exec jekyll build --config _config.yml,_config.build.yml"));
-
-// Compiles the SASS files and moves them into the "assets/stylesheets" directory
-gulp.task("styles", function () {
-  // Looks at the style.scss file for what to include and creates a style.css file
-  return gulp.src("src/assets/scss/style.scss")
-    .pipe($.sass({
-      includePaths: "node_modules/normalize-scss/sass"
-    }))
-    // AutoPrefix your CSS so it works between browsers
-    .pipe($.autoprefixer("last 1 version", { cascade: true }))
-    // Directory your CSS file goes to
-    .pipe(gulp.dest("src/assets/stylesheets/"))
-    .pipe(gulp.dest("serve/assets/stylesheets/"))
-    .pipe(gulp.dest("site/assets/stylesheets/"))
-    // Outputs the size of the CSS file
-    .pipe($.size({title: "styles"}))
-    // Injects the CSS changes to your browser since Jekyll doesn"t rebuild the CSS
-    .pipe(reload({stream: true}));
-});
-
 gulp.task("js", function() {
-  gulp.src("src/assets/javascript/*.js")
+  return gulp.src("src/assets/javascript/*.js")
     .pipe(gulp.dest("src/assets/javascript"))
     .pipe(gulp.dest("site/assets/javascript"));
 });
@@ -118,8 +82,44 @@ gulp.task("deploy", function () {
       }));
 });
 
+// Deletes the directory that is used to serve the site during development
+gulp.task("clean:dev", gulp.series(del.bind(null, ["serve"])));
+
+// Deletes the directory that the optimized site is output to
+gulp.task("clean:prod", gulp.series(del.bind(null, ["site"])));
+
+// Runs the build command for Jekyll to compile the site locally
+// This will build the site with the production settings
+gulp.task("jekyll:dev", $.shell.task("bundle exec jekyll build"));
+gulp.task("jekyll-rebuild", gulp.series(["jekyll:dev", "js"], function () {
+  reload;
+}));
+
+// Almost identical to the above task, but instead we load in the build configuration
+// that overwrites some of the settings in the regular configuration.
+gulp.task("jekyll:prod", $.shell.task("bundle exec jekyll build --config _config.yml,_config.build.yml"));
+
+// Compiles the SASS files and moves them into the "assets/stylesheets" directory
+gulp.task("styles", function () {
+  // Looks at the style.scss file for what to include and creates a style.css file
+  return gulp.src("src/assets/scss/style.scss")
+    .pipe($.sass({
+      includePaths: "node_modules/normalize-scss/sass"
+    }))
+    // AutoPrefix your CSS so it works between browsers
+    .pipe($.autoprefixer("last 1 version", { cascade: true }))
+    // Directory your CSS file goes to
+    .pipe(gulp.dest("src/assets/stylesheets/"))
+    .pipe(gulp.dest("serve/assets/stylesheets/"))
+    .pipe(gulp.dest("site/assets/stylesheets/"))
+    // Outputs the size of the CSS file
+    .pipe($.size({title: "styles"}))
+    // Injects the CSS changes to your browser since Jekyll doesn"t rebuild the CSS
+    .pipe(reload({stream: true}));
+});
+
 // BrowserSync will serve our site on a local server for us.
-gulp.task("serve:dev", ["styles", "jekyll:dev", "js"], function () {
+gulp.task("serve:dev", gulp.series(["styles", "jekyll:dev", "js"], function () {
   bs = browserSync({
     notify: true,
     open: true,
@@ -127,7 +127,7 @@ gulp.task("serve:dev", ["styles", "jekyll:dev", "js"], function () {
       baseDir: "serve"
     }
   });
-});
+}));
 
 // These tasks will look for files that change while serving and will auto-regenerate or
 // reload the website accordingly. Update or add other files you need to be watched.
@@ -148,13 +148,15 @@ gulp.task("serve:prod", function () {
 });
 
 // Default task, run when just writing "gulp" in the terminal
-gulp.task("default", ["serve:dev", "watch"]);
+gulp.task("default", gulp.series(["serve:dev", "watch"]));
 
 // Builds the site but doesn't serve it to you
-gulp.task("build", ["jekyll:prod", "styles", "js"], function () {});
+gulp.task("build", gulp.series(["jekyll:prod", "styles", "js"], function (done) {
+  done();
+}));
 
 // Builds your site with the "build" command and then runs all the optimizations on
 // it and outputs it to "./site"
-gulp.task("publish", ["build"], function () {
-  gulp.start("copy", "html", "cname", "images", "fonts", "js");
-});
+gulp.task("publish", gulp.series(["build", "copy", "html", "cname", "images", "fonts"], function (done) {
+    done();
+}));
